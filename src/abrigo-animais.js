@@ -13,6 +13,7 @@ const TODOS_BRINQUEDOS = ['RATO', 'BOLA', 'LASER', 'CAIXA', 'NOVELO', 'SKATE'];
 class AbrigoAnimais {
 
   encontraPessoas(brinquedosPessoa1, brinquedosPessoa2, ordemAnimais) {
+    return { lista: {}};
   }
 }
 

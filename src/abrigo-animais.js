@@ -12,8 +12,12 @@ const TODOS_BRINQUEDOS = ['RATO', 'BOLA', 'LASER', 'CAIXA', 'NOVELO', 'SKATE'];
 
 class AbrigoAnimais {
 
-  encontraPessoas(brinquedosPessoa1, brinquedosPessoa2, ordemAnimais) {
-    return { lista: {}};
+encontraPessoas(brinquedosPessoa1, brinquedosPessoa2, ordemAnimais) {
+  const animaisSolicitados = ordemAnimais ? ordemAnimais.split(',').map(s => s.trim()).filter(Boolean) : [];
+  const brinquedos1 = brinquedosPessoa1 ? brinquedosPessoa1.split(',').map(s => s.trim()).filter(Boolean) : [];
+  const brinquedos2 = brinquedosPessoa2 ? brinquedosPessoa2.split(',').map(s => s.trim()).filter(Boolean) : [];
+
+    return { debug: { animaisSolicitados, brinquedos1, brinquedos2 } };
   }
 }
 

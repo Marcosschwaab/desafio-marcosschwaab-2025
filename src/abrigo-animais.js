@@ -31,11 +31,16 @@ class AbrigoAnimais {
           .filter(Boolean)
       : [];
 
-  const erro = this._validarEntradas(animaisSolicitados, [brinquedos1, brinquedos2]);
-  if (erro) return { erro };
+    const erro = this.validarEntradas(animaisSolicitados, [
+      brinquedos1,
+      brinquedos2,
+    ]);
+    if (erro) return { erro };
+    const pessoa1 = { adocoes: 0, brinquedosGatoUsados: new Set() };
+    const pessoa2 = { adocoes: 0, brinquedosGatoUsados: new Set() };
 
-  return { ok: true };
-}
+    return { ok: { pessoa1, pessoa2 } };
+  }
 
   validarEntradas(animais, listasBrinquedos) {
     if (new Set(animais).size !== animais.length) return "Animal inválido";
@@ -50,6 +55,10 @@ class AbrigoAnimais {
       }
     }
     return null;
+  }
+
+  atingiuLimite(pessoa) {
+    return pessoa.adocoes >= 3;
   }
 }
 export { AbrigoAnimais as AbrigoAnimais };

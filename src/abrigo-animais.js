@@ -60,5 +60,14 @@ class AbrigoAnimais {
   atingiuLimite(pessoa) {
     return pessoa.adocoes >= 3;
   }
+  segueOrdemDesejada(seqDesejada, listaPessoa) {
+    let ultimo = -1;
+    for (const item of seqDesejada) {
+      const idx = listaPessoa.indexOf(item, ultimo + 1);
+      if (idx === -1) return false;
+      ultimo = idx;
+    }
+    return true;
+  }
 }
 export { AbrigoAnimais as AbrigoAnimais };

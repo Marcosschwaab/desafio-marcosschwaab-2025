@@ -38,8 +38,40 @@ class AbrigoAnimais {
     if (erro) return { erro };
     const pessoa1 = { adocoes: 0, brinquedosGatoUsados: new Set() };
     const pessoa2 = { adocoes: 0, brinquedosGatoUsados: new Set() };
+    const resultado = [];
 
-    return { ok: { pessoa1, pessoa2 } };
+    for (const nomeAnimal of animaisSolicitados) {
+      const animal = ANIMAIS[nomeAnimal];
+      const pode1 = this._pessoaPodeAdotar(
+        pessoa1,
+        animal,
+        brinquedos1,
+        nomeAnimal
+      );
+      const pode2 = this._pessoaPodeAdotar(
+        pessoa2,
+        animal,
+        brinquedos2,
+        nomeAnimal
+      );
+
+      let dono = "abrigo";
+      if (pode1 && !pode2) {
+        dono = "pessoa 1";
+        pessoa1.adocoes++;
+        if (animal.tipo === "gato")
+          animal.brinquedos.forEach((b) => pessoa1.brinquedosGatoUsados.add(b));
+      } else if (!pode1 && pode2) {
+        dono = "pessoa 2";
+        pessoa2.adocoes++;
+        if (animal.tipo === "gato")
+          animal.brinquedos.forEach((b) => pessoa2.brinquedosGatoUsados.add(b));
+      }
+
+      resultado.push(`${nomeAnimal} - ${dono}`);
+    }
+    resultado.sort((a, b) => a.localeCompare(b));
+    return { lista: resultado };
   }
 
   validarEntradas(animais, listasBrinquedos) {

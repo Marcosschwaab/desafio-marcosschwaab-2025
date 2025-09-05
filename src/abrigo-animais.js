@@ -60,12 +60,18 @@ class AbrigoAnimais {
   atingiuLimite(pessoa) {
     return pessoa.adocoes >= 3;
   }
-  pessoaPodeAdotar(pessoa, animal, brinquedosPessoa) {
+  pessoaPodeAdotar(pessoa, animal, brinquedosPessoa, nomeAnimal) {
     if (this.atingiuLimite(pessoa)) return false;
     if (animal.tipo === "gato") {
       for (const b of animal.brinquedos) {
         if (pessoa.brinquedosGatoUsados.has(b)) return false;
       }
+    }
+    if (nomeAnimal === "Loco") {
+      const possuiTodos = animal.brinquedos.every((b) =>
+        brinquedosPessoa.includes(b)
+      );
+      return pessoa.adocoes > 0 && possuiTodos;
     }
     return this.segueOrdemDesejada(animal.brinquedos, brinquedosPessoa);
   }

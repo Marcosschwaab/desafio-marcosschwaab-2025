@@ -42,13 +42,13 @@ class AbrigoAnimais {
 
     for (const nomeAnimal of animaisSolicitados) {
       const animal = ANIMAIS[nomeAnimal];
-      const pode1 = this._pessoaPodeAdotar(
+      const pode1 = this.pessoaPodeAdotar(
         pessoa1,
         animal,
         brinquedos1,
         nomeAnimal
       );
-      const pode2 = this._pessoaPodeAdotar(
+      const pode2 = this.pessoaPodeAdotar(
         pessoa2,
         animal,
         brinquedos2,
